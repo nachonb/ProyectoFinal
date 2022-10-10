@@ -13,4 +13,4 @@ class AutorForm(forms.Form):
     profesion = forms.CharField(max_length=30)
 
 class SeccionForm(forms.Form):
-    titulo = forms.CharField(max_length=30)
+    nombre_seccion = forms.CharField(max_length=30)

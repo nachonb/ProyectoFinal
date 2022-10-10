@@ -1,0 +1,11 @@
+{% extends "blog/madre.html" %}
+
+{% block inserte_aqui_su_contenido %}
+<h3>Busqueda de seccion: </h3>
+
+<form action="/blog/buscar-seccion/" method="POST">{% csrf_token %}
+    <p><input type="text" name="nombre_seccion" id="nombre_seccion"></p>
+    <input type="submit" value="Buscar">
+</form>
+
+{% endblock %}

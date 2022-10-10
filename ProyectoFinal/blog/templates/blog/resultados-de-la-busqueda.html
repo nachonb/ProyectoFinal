@@ -1,9 +1,11 @@
-
+<h3>En base a su busqueda, como resultado se ha encontrado:</h1>
 <ul>
 {% for resultado in resultados %}
 
-    <li>Titulo: {{resultado.titulo}} <br>
-        Contenido: {{resultado.texto}}</li>
+    <li>{{resultado.titulo}} {{resultado.texto}} {{resultado.fecha}}
+        {{resultado.nombre}} {{resultado.apellido}} {{resultado.profesion}}
+        {{resultado.nombre_seccion}}
+    </li>
 
 {% endfor %}
 </ul>

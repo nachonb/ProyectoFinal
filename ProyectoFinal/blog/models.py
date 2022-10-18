@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Autor(models.Model):
@@ -31,4 +32,5 @@ class Seccion(models.Model):
 
     def __str__(self):
         return self.nombre_seccion
+
     

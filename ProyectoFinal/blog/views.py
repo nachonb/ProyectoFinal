@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from blog.models import Articulo, Autor, Seccion
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -108,3 +109,30 @@ def buscar_seccion(request):
         resultados_de_busqueda = Seccion.objects.filter(nombre_seccion=nombre_para_buscar)
         contexto = {"resultados": resultados_de_busqueda}
         return render(request, "blog/resultados-de-la-busqueda.html", context = contexto)
+
+
+class AutorList(ListView):
+    model = Autor
+    template_name = "blog/autor_list.html"
+
+class AutorDetalle(DetailView):
+    model = Autor
+    template_name = "blog/autor_detalle.html"
+
+from django.urls import reverse
+
+class AutorCreacion(CreateView):
+    model = Autor
+    fields = ["nombre", "apellido", "profesion"]
+    success_url = "/blog/autor/list"
+    
+
+
+class AutorUpdateView(UpdateView):
+    model = Autor
+    success_url = "/blog/autor/list"
+    fields = ["nombre", "apellido", "profesion"]
+
+class AutorDelete(DeleteView):
+    model = Autor
+    success_url = "/blog/autor/list"

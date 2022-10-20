@@ -118,36 +118,36 @@ def buscar_seccion(request):
         return render(request, "blog/resultados-de-la-busqueda.html", context = contexto)
 
 
-class AutorList(ListView, LoginRequiredMixin):
+class AutorList(LoginRequiredMixin, ListView):
     model = Autor
     template_name = "blog/autor_list.html"
 
-class AutorDetalle(DetailView, LoginRequiredMixin):
+class AutorDetalle(LoginRequiredMixin, DetailView):
     model = Autor
     template_name = "blog/autor_detalle.html"
 
 from django.urls import reverse
 
-class AutorCreacion(CreateView, LoginRequiredMixin):
+class AutorCreacion(LoginRequiredMixin, CreateView):
     model = Autor
     fields = ["nombre", "apellido", "profesion"]
     success_url = "/blog/autor/list"
     
 
 
-class AutorUpdateView(UpdateView, LoginRequiredMixin):
+class AutorUpdateView(LoginRequiredMixin, UpdateView):
     model = Autor
     success_url = "/blog/autor/list"
     fields = ["nombre", "apellido", "profesion"]
 
-class AutorDelete(DeleteView, LoginRequiredMixin):
+class AutorDelete(LoginRequiredMixin, DeleteView):
     model = Autor
     success_url = "/blog/autor/list"
 
 class MyLogin(LoginView):
     template_name = "blog/login.html"
 
-class MyLogout(LogoutView, LoginRequiredMixin):
+class MyLogout(LoginRequiredMixin, LogoutView):
     template_name = "blog/logout.html"
 
 def register(request):

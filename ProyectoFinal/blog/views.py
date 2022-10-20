@@ -4,9 +4,15 @@ from django.shortcuts import render
 from blog.models import Articulo, Autor, Seccion
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required 
 def mostrar_inicio(request):
     return render(request, "blog/inicio.html")
 
@@ -78,7 +84,7 @@ def procesar_formulario_seccion(request):
 
 
 
-
+@login_required
 def buscar_articulo(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-articulo.html")
@@ -89,6 +95,7 @@ def buscar_articulo(request):
         contexto = {"resultados": resultados_de_busqueda}
         return render(request, "blog/resultados-de-la-busqueda.html", context = contexto)
 
+@login_required
 def buscar_autor(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-autor.html")
@@ -99,7 +106,7 @@ def buscar_autor(request):
         contexto = {"resultados": resultados_de_busqueda}
         return render(request, "blog/resultados-de-la-busqueda.html", context = contexto)
 
-
+@login_required
 def buscar_seccion(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-seccion.html")
@@ -111,28 +118,48 @@ def buscar_seccion(request):
         return render(request, "blog/resultados-de-la-busqueda.html", context = contexto)
 
 
-class AutorList(ListView):
+class AutorList(ListView, LoginRequiredMixin):
     model = Autor
     template_name = "blog/autor_list.html"
 
-class AutorDetalle(DetailView):
+class AutorDetalle(DetailView, LoginRequiredMixin):
     model = Autor
     template_name = "blog/autor_detalle.html"
 
 from django.urls import reverse
 
-class AutorCreacion(CreateView):
+class AutorCreacion(CreateView, LoginRequiredMixin):
     model = Autor
     fields = ["nombre", "apellido", "profesion"]
     success_url = "/blog/autor/list"
     
 
 
-class AutorUpdateView(UpdateView):
+class AutorUpdateView(UpdateView, LoginRequiredMixin):
     model = Autor
     success_url = "/blog/autor/list"
     fields = ["nombre", "apellido", "profesion"]
 
-class AutorDelete(DeleteView):
+class AutorDelete(DeleteView, LoginRequiredMixin):
     model = Autor
     success_url = "/blog/autor/list"
+
+class MyLogin(LoginView):
+    template_name = "blog/login.html"
+
+class MyLogout(LogoutView, LoginRequiredMixin):
+    template_name = "blog/logout.html"
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username_capturado = form.cleaned_data["username"]
+            form.save()
+
+            return render(request, "blog/inicio.html", {"mensaje": f"Usuario: {username_capturado}"})
+
+    else:
+        form = UserCreationForm()
+    
+    return render(request, "blog/registro.html", {"form": form})

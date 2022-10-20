@@ -1,5 +1,10 @@
-Nombre del autor: {{ autor.nombre }}
-Apellido del autor: {{ autor.apellido }}
-Profesion del autor: {{ autor.profesion }}
+{% extends "blog/madre.html" %}
+{% block inserte_aqui_su_contenido %} 
+
+Nombre del autor: {{ autor.nombre }} <br>
+Apellido del autor: {{ autor.apellido }} <br>
+Profesion del autor: {{ autor.profesion }} 
 
 <a href="{% url 'AutorList' %}">Todos los autores</a>
+
+{% endblock %} 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, AutorDetalle, AutorCreacion, AutorUpdateView, AutorDelete
+from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, AutorDetalle, AutorCreacion, AutorUpdateView, AutorDelete,  MyLogin, MyLogout, register
 
 urlpatterns = [
     path('inicio/', mostrar_inicio),
@@ -15,5 +15,8 @@ urlpatterns = [
     path("r'(?P<pk>\d+)^$'", AutorDetalle.as_view(), name="AutorDetail"),
     path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
     path("editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
-    path("borrar/<pk>", AutorDelete.as_view(), name="AutorDelete")
+    path("borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),
+    path("login/", MyLogin.as_view(), name="Login"),
+    path("logout/", MyLogout.as_view(), name="Logout"),
+    path("register/", register, name="Register")
     ] 

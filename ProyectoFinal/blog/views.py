@@ -20,7 +20,7 @@ def mostrar_inicio(request):
     else:
         contexto = {}
 
-    return render(request, "blog/inicio.html")
+    return render(request, "blog/inicio.html", contexto)
 
 
 def procesar_formulario_autor(request):

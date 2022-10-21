@@ -173,6 +173,7 @@ def register(request):
 @login_required
 def editar_perfil(request):
     user = request.user
+    avatar = Avatar.objects.filter(user=request.user).first()
 
     if request.method != "POST":
         form = UserEditionForm(initial={"email": user.email})
@@ -185,9 +186,13 @@ def editar_perfil(request):
             user.last_name = data["last_name"]
             user.set_password(data["password1"])
             user.save()
-            return render(request, "blog/inicio.html")
+            return render(request, "blog/inicio.html", {"avatar": avatar.imagen.url})
 
-    contexto = {"user": user, "form": form}
+    contexto = {
+    "user": user, 
+    "form": form,
+    "avatar": avatar.imagen.url
+    }
     return render(request, "blog/editarPerfil.html", contexto)
 
 @login_required

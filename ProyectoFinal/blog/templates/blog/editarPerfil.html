@@ -2,6 +2,7 @@
 {% block inserte_aqui_su_contenido %} 
 
 Editar perfil de: <i>{{ user }}</i>
+{{ avatar }} {{ user.avatar.imagen.url }}
 
 <form action="" method="POST">
     {% csrf_token %}
@@ -9,6 +10,8 @@ Editar perfil de: <i>{{ user }}</i>
     <br><br>
     <button type="submit" name="submit">Editar perfil</button>
 </form>
+
+
 
 
 {% endblock %} 

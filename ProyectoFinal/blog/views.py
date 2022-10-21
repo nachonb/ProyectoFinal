@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from blog.models import Articulo, Autor, Seccion
-from blog.forms import ArticuloForm, AutorForm, SeccionForm
+from blog.models import Articulo, Autor, Seccion, Avatar
+from blog.forms import ArticuloForm, AutorForm, SeccionForm, UserEditionForm, AvatarForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -14,6 +14,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required 
 def mostrar_inicio(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if avatar is not None:
+        contexto = {"avatar": avatar.imagen.url}
+    else:
+        contexto = {}
+
     return render(request, "blog/inicio.html")
 
 
@@ -163,3 +169,37 @@ def register(request):
         form = UserCreationForm()
     
     return render(request, "blog/registro.html", {"form": form})
+
+@login_required
+def editar_perfil(request):
+    user = request.user
+
+    if request.method != "POST":
+        form = UserEditionForm(initial={"email": user.email})
+    else:
+        form = UserEditionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user.email = data["email"]
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.set_password(data["password1"])
+            user.save()
+            return render(request, "blog/inicio.html")
+
+    contexto = {"user": user, "form": form}
+    return render(request, "blog/editarPerfil.html", contexto)
+
+@login_required
+def agregar_avatar(request):
+    if request.method != "POST":
+        form = AvatarForm()
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            Avatar.objects.filter(user=request.user).delete()
+            form.save()
+            return render(request, "blog/inicio.html")
+
+    contexto = {"form": form}
+    return render(request, "blog/avatar_form.html", contexto)

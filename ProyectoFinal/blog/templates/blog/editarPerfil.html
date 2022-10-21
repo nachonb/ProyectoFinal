@@ -1,0 +1,14 @@
+{% extends "blog/madre.html" %}
+{% block inserte_aqui_su_contenido %} 
+
+Editar perfil de: <i>{{ user }}</i>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br><br>
+    <button type="submit" name="submit">Editar perfil</button>
+</form>
+
+
+{% endblock %} 

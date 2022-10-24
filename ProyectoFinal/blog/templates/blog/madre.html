@@ -15,7 +15,7 @@
     <a class="navbar-brand" href="{% url 'EditarPerfil' %}">Editar Perfil</a>
     <a class="navbar-brand" href="{% url 'AgregarAvatar' %}">Agregar Avatar</a>
     {% if avatar %}
-        <img height="40px" src="{{ user.avatar.imagen.url }}"/>
+        <img height="40px" src="{{ avatar }}"/>
     {% endif %}
     <p>Hola, {{ user.username }} !!</p>
     {{ avatar }}

@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, AutorDetalle, AutorCreacion, AutorUpdateView, AutorDelete,  MyLogin, MyLogout, register, editar_perfil, agregar_avatar
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('inicio/', mostrar_inicio),
@@ -22,3 +25,7 @@ urlpatterns = [
     path("editar-perfil/", editar_perfil, name="EditarPerfil"),
     path("agregar-avatar/", agregar_avatar, name="AgregarAvatar")
     ] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

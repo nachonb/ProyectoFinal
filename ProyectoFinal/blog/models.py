@@ -18,8 +18,9 @@ class Autor(models.Model):
 
 class Articulo(models.Model):
     titulo = models.CharField(max_length=30)
+    subtitulo = models.CharField(max_length=30, null=True)
     texto = models.CharField(max_length=1000)
-    fecha = models.DateField(null = True)
+    fecha = models.DateField(null = True) 
 
     def __str__(self):
         return self.titulo
@@ -38,3 +39,13 @@ class Seccion(models.Model):
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to="avatares", null=True, blank=True)
+
+class Pagina(models.Model):
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=30)
+    subtitulo = models.CharField(max_length=30, null=True)
+    texto = models.CharField(max_length=1000)
+    fecha = models.DateField(null = True) 
+
+    def __str__(self):
+        return self.titulo

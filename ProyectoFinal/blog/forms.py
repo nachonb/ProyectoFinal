@@ -6,6 +6,7 @@ from blog.models import Avatar
 class ArticuloForm(forms.Form):
 
     titulo = forms.CharField(max_length=30)
+    subtitulo = forms.CharField(max_length=30)
     texto = forms.CharField(max_length=1000)
     fecha = forms.DateField()
 

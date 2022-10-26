@@ -3,6 +3,8 @@
 
 <h1>Lista completa autores</h1>
 
+{% if object_list %}
+
 <ul>
     {% for autor in object_list %}
 
@@ -19,5 +21,7 @@
     </li>
     {% endfor %}
 </ul>
-
+{% else %}
+<p>No hay autores aún, puedes cargar alguno para que aparezca en esta lista.</p>
+{% endif %}
 {% endblock %} 

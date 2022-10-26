@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('inicio/', mostrar_inicio),
+    path('inicio/', mostrar_inicio, name="Inicio"),
     path("formulario-autor/", procesar_formulario_autor),
     path("formulario-articulo/", procesar_formulario_articulo),
     path("formulario-seccion/", procesar_formulario_seccion),
@@ -23,7 +23,8 @@ urlpatterns = [
     path("logout/", MyLogout.as_view(), name="Logout"),
     path("register/", register, name="Register"),
     path("editar-perfil/", editar_perfil, name="EditarPerfil"),
-    path("agregar-avatar/", agregar_avatar, name="AgregarAvatar")
+    path("agregar-avatar/", agregar_avatar, name="AgregarAvatar"),
+    path("", mostrar_inicio),
     ] 
 
 if settings.DEBUG:

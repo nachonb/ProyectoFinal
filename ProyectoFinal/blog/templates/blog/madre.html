@@ -1,8 +1,8 @@
 <h1>Proyecto Final: entrega intermedia</h1>
 <br>
 <br>
+<a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
 <a class="navbar-brand" href="{% url 'AutorList' %}">Mis autores</a>
-
 <a class="navbar-brand" href="{% url 'AutorNew' %}">Crear nuevo autor</a>
 
 {% if not request.user.is_authenticated %}
@@ -18,7 +18,7 @@
         <img height="40px" src="{{ avatar }}"/>
     {% endif %}
     <p>Hola, {{ user.username }} !!</p>
-    {{ avatar }}
+    
 {% endif %}
 
 

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from blog.models import Articulo, Autor, Seccion, Avatar
+from blog.models import Articulo, Autor, Seccion, Avatar, Pagina
 from blog.forms import ArticuloForm, AutorForm, SeccionForm, UserEditionForm, AvatarForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate
@@ -128,9 +128,17 @@ class AutorList(LoginRequiredMixin, ListView):
     model = Autor
     template_name = "blog/autor_list.html"
 
+class PaginasList(LoginRequiredMixin, ListView):
+    model = Pagina
+    template_name = "blog/paginas_list.html"
+
 class AutorDetalle(LoginRequiredMixin, DetailView):
     model = Autor
     template_name = "blog/autor_detalle.html"
+
+class PaginaDetalle(LoginRequiredMixin, DetailView):
+    model = Pagina
+    template_name = "blog/pagina_detalle.html"
 
 from django.urls import reverse
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
-from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, AutorDetalle, AutorCreacion, AutorUpdateView, AutorDelete,  MyLogin, MyLogout, register, editar_perfil, agregar_avatar, about_me
+from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, PaginasList, AutorDetalle, PaginaDetalle, AutorCreacion, AutorUpdateView, AutorDelete,  MyLogin, MyLogout, register, editar_perfil, agregar_avatar, about_me
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,7 +15,9 @@ urlpatterns = [
     path("buscar-autor/", buscar_autor),
     path("buscar-seccion/", buscar_seccion),
     path("autor/list", AutorList.as_view(), name="AutorList"),
+    path("paginas/list", PaginasList.as_view(), name="PaginasList"),
     path("r'(?P<pk>\d+)^$'", AutorDetalle.as_view(), name="AutorDetail"),
+    path("detalle/<pk>", PaginaDetalle.as_view(), name="PaginaDetail"),
     path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
     path("editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
     path("borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),

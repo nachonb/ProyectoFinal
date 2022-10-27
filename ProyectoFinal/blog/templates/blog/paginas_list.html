@@ -1,0 +1,30 @@
+{% extends "blog/madre.html" %}
+{% block inserte_aqui_su_contenido %} 
+
+<h1>Lista completa de páginas</h1>
+
+{% if object_list %}
+
+<ul>
+    {% for pagina in object_list %}
+
+    <li>
+
+        <p>
+            Autor: {{ pagina.autor }}
+        <br>Titulo: {{ pagina.titulo }} 
+        <br>Subtitulo: {{ pagina.subtitulo }} . 
+    
+    <p> 
+        <a href="{% url 'PaginaDetail' pagina.id %}">Ver</a>
+        Editar
+        Borrar
+
+    </p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay páginas aún, puedes cargar alguna para que aparezca en esta lista.</p>
+{% endif %}
+{% endblock %} 

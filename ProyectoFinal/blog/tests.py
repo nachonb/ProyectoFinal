@@ -18,7 +18,7 @@ class ViewTestCase(TestCase):
         assert todos_los_autores[1].profesion == "Profesion2"
 
 #para la entrega final son 3 unit test en total
-#falta una pagina, una view que diga "about me" , que sea /about/
+#falta una pagina, una view que diga "about me" , que sea /about/ {ya esta creado y funciona}
 #una vista pages/ que tenga vista de toods los blogs que contenga todas las paginas, al tocar "Leer más" te de detalle
 #de forma similar a "Mis autores", que muestra toods los autores, que tenga la opción de "Leer más", que sea como el "Detalle" que tengo en autores
 # en caso de que no haya blogs, que muestre un mensaje que diga que no hay blogs aún, {HECHO} 

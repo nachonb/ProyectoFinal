@@ -208,3 +208,8 @@ def agregar_avatar(request):
 
     contexto = {"form": form}
     return render(request, "blog/avatar_form.html", contexto)
+
+@login_required
+def about_me(request):
+    return render(request, "blog/about_me.html")
+

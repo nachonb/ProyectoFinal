@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
-from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, PaginasList, AutorDetalle, PaginaDetalle, AutorCreacion, AutorUpdateView, AutorDelete,  MyLogin, MyLogout, register, editar_perfil, agregar_avatar, about_me
+from blog.views import mostrar_inicio, procesar_formulario_autor, procesar_formulario_articulo, procesar_formulario_seccion, buscar_articulo, buscar_autor, buscar_seccion, AutorList, PaginasList, AutorDetalle, PaginaDetalle, AutorCreacion, PaginaCreacion, PaginaUpdateView, AutorDelete, PaginaDelete,  MyLogin, MyLogout, register, editar_perfil, agregar_avatar, about_me
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -19,8 +19,10 @@ urlpatterns = [
     path("r'(?P<pk>\d+)^$'", AutorDetalle.as_view(), name="AutorDetail"),
     path("detalle/<pk>", PaginaDetalle.as_view(), name="PaginaDetail"),
     path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
-    path("editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
-    path("borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),
+    path("pagina-nuevo/", PaginaCreacion.as_view(), name="PaginaNew"),
+    path("editar/<pk>", PaginaUpdateView.as_view(), name="PaginaUpdate"),
+    path("borrar/<pk>", PaginaDelete.as_view(), name="PaginaDelete"),
+    path(r'^borrar/(?P<pk>\d+)$', AutorDelete.as_view(), name="AutorDelete"),
     path("login/", MyLogin.as_view(), name="Login"),
     path("logout/", MyLogout.as_view(), name="Logout"),
     path("register/", register, name="Register"),

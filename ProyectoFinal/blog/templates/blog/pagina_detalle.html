@@ -1,9 +1,11 @@
 {% extends "blog/madre.html" %}
 {% block inserte_aqui_su_contenido %} 
 
-Nombre del autor: {{ pagina.titulo }} <br>
-Apellido del autor: {{ pagina.subtitulo }} <br>
-Profesion del autor: {{ pagina.profesion }} 
+Titulo: {{ pagina.titulo }} <br>
+Subtitulo: {{ pagina.subtitulo }} <br>
+Articulo: {{ pagina.texto }} <br>
+Fecha: {{ pagina.fecha }} <br> 
+Autor: {{ pagina.autor }} <br>
 
 <a href="{% url 'PaginasList' %}">Todos los autores</a>
 

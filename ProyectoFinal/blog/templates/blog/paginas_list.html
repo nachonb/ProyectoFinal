@@ -11,14 +11,15 @@
     <li>
 
         <p>
+            Titulo: {{ pagina.titulo }}  <br>
             Autor: {{ pagina.autor }}
-        <br>Titulo: {{ pagina.titulo }} 
-        <br>Subtitulo: {{ pagina.subtitulo }} . 
+     
+ 
     
     <p> 
         <a href="{% url 'PaginaDetail' pagina.id %}">Ver</a>
-        Editar
-        Borrar
+        <a href="{% url 'PaginaUpdate' pagina.id %}">Editar</a>
+        <a href="{% url 'PaginaDelete' pagina.id %}">Borrar</a>
 
     </p>
     </li>

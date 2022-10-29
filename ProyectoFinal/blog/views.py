@@ -146,17 +146,28 @@ class AutorCreacion(LoginRequiredMixin, CreateView):
     model = Autor
     fields = ["nombre", "apellido", "profesion"]
     success_url = "/blog/autor/list"
+
+
+class PaginaCreacion(LoginRequiredMixin, CreateView):
+    model = Pagina
+    fields = ["autor", "titulo", "subtitulo", "texto", "fecha"]
+    success_url = "/blog/paginas/list"
     
 
+class PaginaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Pagina
+    success_url = "/blog/paginas/list"
+    fields = ["autor", "titulo", "subtitulo", "texto", "fecha"]
 
-class AutorUpdateView(LoginRequiredMixin, UpdateView):
-    model = Autor
-    success_url = "/blog/autor/list"
-    fields = ["nombre", "apellido", "profesion"]
+
+class PaginaDelete(LoginRequiredMixin, DeleteView):
+    model = Pagina
+    success_url = "/blog/paginas/list"
 
 class AutorDelete(LoginRequiredMixin, DeleteView):
     model = Autor
     success_url = "/blog/autor/list"
+
 
 class MyLogin(LoginView):
     template_name = "blog/login.html"

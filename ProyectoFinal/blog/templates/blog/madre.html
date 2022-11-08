@@ -1,12 +1,13 @@
-<h1>Proyecto Final: entrega intermedia</h1>
+<h1>Blog libre de debate</h1>
 <br>
 <br>
 <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
-<a class="navbar-brand" href="{% url 'AutorList' %}">Mis autores</a>
-<a class="navbar-brand" href="{% url 'AutorNew' %}">Crear nuevo autor</a>
-<a class="navbar-brand" href="{% url 'PaginaNew' %}">Crear nueva pagina</a>
-<a class="navbar-brand" href="{% url 'AboutMe' %}">About me</a>
-<a class="navbar-brand" href="{% url 'PaginasList' %}">Paginas List</a>
+<a class="navbar-brand" href="{% url 'PaginasList' %}">Blogs</a> 
+<a class="navbar-brand" href="{% url 'AutorList' %}">Autores</a> <br>
+<a class="navbar-brand" href="{% url 'AutorNew' %}">Crear autor</a>
+<a class="navbar-brand" href="{% url 'PaginaNew' %}">Crear blog</a> <br>
+<a class="navbar-brand" href="{% url 'AboutMe' %}">About me</a> <br>
+
 
 {% if not request.user.is_authenticated %}
 <a class="navbar-brand" href="{% url 'Login' %}">Login</a>
@@ -20,7 +21,9 @@
     {% if avatar %}
         <img height="40px" src="{{ avatar }}"/>
     {% endif %}
-    <p>Hola, {{ user.username }} !!</p>
+  
+
+    <p> Su usuario es: {{ user.username }} </p>
     
 {% endif %}
 
